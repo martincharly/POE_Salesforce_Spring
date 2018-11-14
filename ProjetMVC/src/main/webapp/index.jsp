@@ -1,4 +1,11 @@
 <html>
+<head>
+	<base href="<%=request.getScheme() + "://"
+		+ request.getServerName() + ":"
+		+ request.getServerPort()
+		+ request.getContextPath() + "/"
+		%>" />
+</head>
 <body>
 
 	<h1>Bienvenue à la cantine !</h1>

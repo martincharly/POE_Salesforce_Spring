@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=request.getScheme() + "://"
+		+ request.getServerName() + ":"
+		+ request.getServerPort()
+		+ request.getContextPath() + "/"
+		%>" />
 		<meta charset="ISO-8859-1">
 		<title>Accueil</title>
 	</head>
