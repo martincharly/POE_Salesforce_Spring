@@ -29,5 +29,6 @@
 	<a href="plat/new">Ajouter un plat</a>
 	
 	
+	
 </body>
 </html>

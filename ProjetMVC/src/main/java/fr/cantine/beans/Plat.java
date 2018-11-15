@@ -11,7 +11,9 @@ public class Plat extends IndexableObject {
 	private float prix;
 	@Enumerated(EnumType.STRING)
 	private TypePlat typePlat;
-	
+	private String image;
+
+
 	public String getNom() {
 		return nom;
 	}
@@ -33,6 +35,13 @@ public class Plat extends IndexableObject {
 	@Override
 	public String toString() {
 		return "Plat [nom=" + nom + ", prix=" + prix + ", typePlat=" + typePlat + ", getId()=" + getId() + "]";
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }

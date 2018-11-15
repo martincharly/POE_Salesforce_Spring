@@ -22,8 +22,13 @@ public class PlatDao implements DaoInterface<Plat> {
 	@Override
 	public Plat createOrUpdate(Plat item) {
 		Session session = sessionFactory.getCurrentSession();
-		session.persist(item);
-		return item;
+		if (item.getId() == null) {
+			session.persist(item);
+		} 
+		else {
+			session.merge(item);
+		}
+		return item;	
 	}
 
 	@Override

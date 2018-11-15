@@ -10,6 +10,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<mvc:annotation-driven />
+	
+	<mvc:resources mapping="/uploaded/**" location="/uploaded/" />
+	
 	<context:component-scan base-package="fr.cantine" />
 	
 	
@@ -100,5 +103,10 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="20971520"></property> <!-- Limite valeur upload = 20 Mo -->
+		<property name="maxInMemorySize" value="1048576"></property> <!-- Valeur limite d'écriture = 1Mo -->
+	</bean>
 
 </beans>
