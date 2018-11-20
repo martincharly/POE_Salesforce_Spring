@@ -21,9 +21,11 @@
 	</bean>
 
 
-	<bean id="hibernateDao" class="fr.capgemini.dao.MatchDao">
+	<bean id="hibernateMatchDao" class="fr.capgemini.dao.MatchDao">
 	</bean>
-	<bean id="hibernateDao2" class="fr.capgemini.dao.PlayerDao">
+	<bean id="hibernatePlayerDao" class="fr.capgemini.dao.PlayerDao">
+	</bean>
+	<bean id="hibernateMatchSheetDao" class="fr.capgemini.dao.MatchSheetDao">
 	</bean>
 
 	<!-- ********************************************************************************************************** -->

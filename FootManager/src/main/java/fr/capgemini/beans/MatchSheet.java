@@ -13,9 +13,9 @@ public class MatchSheet extends DbObject{
 
 	private int goals;
 	private int assists;
-	@Enumerated(EnumType.STRING)
-	private Cards cards;
-	private int mark;
+//	@Enumerated(EnumType.STRING)
+//	private Cards cards;
+//	private int mark;
 	
 	@ManyToOne  
 	private Match match;
@@ -58,21 +58,21 @@ public class MatchSheet extends DbObject{
 		this.assists = assists;
 	}
 	
-	public Cards getCards() {
-		return cards;
-	}
-
-	public void setCards(Cards cards) {
-		this.cards = cards;
-	}
-
-	public int getMark() {
-		return mark;
-	}
-
-	public void setMark(int mark) {
-		this.mark = mark;
-	}
+//	public Cards getCards() {
+//		return cards;
+//	}
+//
+//	public void setCards(Cards cards) {
+//		this.cards = cards;
+//	}
+//
+//	public int getMark() {
+//		return mark;
+//	}
+//
+//	public void setMark(int mark) {
+//		this.mark = mark;
+//	}
 
 	
 }

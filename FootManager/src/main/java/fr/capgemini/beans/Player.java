@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Player extends DbObject {
 
-	private int idPlayer;
+	
 	private String firstName;
 	private String lastName;
 	private Date birthday;
@@ -20,6 +20,9 @@ public class Player extends DbObject {
 	@Enumerated(EnumType.STRING)
 	private Position position;
 	private String email;
+	private int nbGoals;
+	private int nbAssists;
+//	private int nbCards
 	
 	@OneToMany
 	private List<MatchSheet> listMatchSheet = new ArrayList<MatchSheet>();
@@ -45,14 +48,6 @@ public class Player extends DbObject {
 
 	public Player() {
 		
-	}
-
-	public int getIdPlayer() {
-		return idPlayer;
-	}
-
-	public void setIdPlayer(int idPlayer) {
-		this.idPlayer = idPlayer;
 	}
 
 	public String getFirstName() {
@@ -103,7 +98,22 @@ public class Player extends DbObject {
 		this.email = email;
 	}
 
-	
+	public int getNbGoals() {
+		return nbGoals;
+	}
+
+	public void setNbGoals(int nbGoals) {
+		this.nbGoals = nbGoals;
+	}
+
+	public int getNbAssists() {
+		return nbAssists;
+	}
+
+	public void setNbAssists(int nbAssists) {
+		this.nbAssists = nbAssists;
+	}
+
 	
 	
 }

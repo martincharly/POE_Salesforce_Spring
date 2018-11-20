@@ -20,7 +20,7 @@ import fr.capgemini.dao.DaoInterface;
 public class MatchController {
 
 	@Autowired
-	@Qualifier("hibernateDao")
+	@Qualifier("hibernateMatchDao")
 	private DaoInterface<Match> dao;
 
 	@GetMapping("/newMatch")
@@ -63,6 +63,7 @@ public class MatchController {
 	@GetMapping("/season")
 	public String afficheListeMatch(Model model, String message) {
 		model.addAttribute("listeMatch", dao.findAll());
+		System.out.println("afficheListeMatch");
 		model.addAttribute("msg", message);
 
 		return "season";

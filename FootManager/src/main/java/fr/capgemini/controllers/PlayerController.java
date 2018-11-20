@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.capgemini.beans.MatchSheet;
 import fr.capgemini.beans.Player;
 import fr.capgemini.beans.Position;
 import fr.capgemini.dao.DaoInterface;
@@ -20,7 +21,7 @@ import fr.capgemini.dao.DaoInterface;
 public class PlayerController {
 
 	@Autowired
-	@Qualifier("hibernateDao2")
+	@Qualifier("hibernatePlayerDao")
 	private DaoInterface<Player> dao;
 
 	@GetMapping("/newPlayer")
@@ -36,7 +37,8 @@ public class PlayerController {
 			@RequestParam("birthday") Date date,
 			@RequestParam("position") Position position,
 			@RequestParam("kitNumber") int kitNumber,
-			@RequestParam("email") String email) {
+			@RequestParam("email") String email
+			) {
 		
 		Player player = new Player();
 		
@@ -46,7 +48,7 @@ public class PlayerController {
 		player.setPosition(position);
 		player.setKitNumber(kitNumber);
 		player.setEmail(email);
-		
+
 		player = dao.createOrUpdate(player);
 
 		return afficheTeam(model, "Joueur ajouté : " + player.getLastName());

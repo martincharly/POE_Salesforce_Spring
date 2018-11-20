@@ -36,7 +36,7 @@
 			<th>Numéro</th>
 			<th>Buts</th>
 			<th>Passes</th>
-			<th>Cartons</th>
+<!-- 			<th>Cartons</th> -->
 			<th>Matches</th>
 			<th>Email</th>
 			<th>Action</th>
@@ -45,21 +45,22 @@
 
 		<core:forEach var="player" items="${ listePlayer }">
 		<tr>
-			<td>${player.lastName }</td>
-			<td>${player.firstName }</td>
-			<td>${player.birthday }</td>
-			<td>${player.position }</td>
-			<td>${player.kitNumber }</td>
-			<td>${player.firstName }</td>
-			<td>${player.firstName }</td>
-			<td>${player.email }</td>
-			<td>${player.firstName }</td>				
+			<td>${player.lastName}</td>
+			<td>${player.firstName}</td>
+			<td>${player.birthday}</td>
+			<td>${player.position}</td>
+			<td>${player.kitNumber}</td>
+			<td>${player.nbGoals}</td>
+			<td>${player.nbAssists}</td>
+<!-- 			<td></td> -->
+			<td></td>
+			<td>${player.email}</td>				
 			<td></td>				
 		</tr>
 		
 
 </core:forEach>	
 	</table>
-	${msg }
+	${msg}
 </body>
 </html>

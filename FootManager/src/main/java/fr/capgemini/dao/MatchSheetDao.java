@@ -8,46 +8,45 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
-import fr.capgemini.beans.Player;
+import fr.capgemini.beans.MatchSheet;
 
 @Transactional
-public class PlayerDao implements DaoInterface<Player> {
+public class MatchSheetDao implements DaoInterface<MatchSheet> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	@Override
-	public Player createOrUpdate(Player item) {
+	public MatchSheet createOrUpdate(MatchSheet item) {
 		Session session = sessionFactory.getCurrentSession();
-		if (item.getId() == null) {
-			session.persist(item);
-		} else {
-			session.merge(item);
-		}
-		return item;
+		if(item.getId()==null) {
+		session.persist(item);
+		}else {
+		session.merge(item);
+	
+		}	return item;
+	}
+	
+	@Override
+	public MatchSheet find(Long id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.find(MatchSheet.class, id);
 	}
 
 	@Override
-	public Player find(Long id) {
+	public List<MatchSheet> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.find(Player.class, id);
-	}
-
-	@Override
-	public List<Player> findAll() {
-		Session session = sessionFactory.getCurrentSession();
-		TypedQuery<Player> query = session.createQuery("SELECT entity FROM Player entity", Player.class);
+		TypedQuery<MatchSheet> query = session.createQuery("SELECT entity FROM MatchSheet entity", MatchSheet.class);
 		return query.getResultList();
 	}
 
 	@Override
 	public void delete(Long id) {
 		Session session = sessionFactory.getCurrentSession();
-		Player player = find(id);
-		session.remove(player);
-
+		MatchSheet matchSheet = find(id);
+		session.remove(matchSheet);
+		
 	}
-
+	
 }

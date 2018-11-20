@@ -13,7 +13,7 @@ import fr.capgemini.dao.DaoInterface;
 public class SeasonController {
 
 	@Autowired
-	@Qualifier("hibernateDao")
+	@Qualifier("hibernateMatchDao")
 	private DaoInterface<Match> season;
 	
 	@GetMapping("")
