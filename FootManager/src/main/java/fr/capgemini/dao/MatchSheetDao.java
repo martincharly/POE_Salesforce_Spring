@@ -16,18 +16,19 @@ public class MatchSheetDao implements DaoInterface<MatchSheet> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public MatchSheet createOrUpdate(MatchSheet item) {
 		Session session = sessionFactory.getCurrentSession();
-		if(item.getId()==null) {
-		session.persist(item);
-		}else {
-		session.merge(item);
-	
-		}	return item;
+		if (item.getId() == null) {
+			session.persist(item);
+		} else {
+			session.merge(item);
+
+		}
+		return item;
 	}
-	
+
 	@Override
 	public MatchSheet find(Long id) {
 		Session session = sessionFactory.getCurrentSession();
@@ -44,9 +45,19 @@ public class MatchSheetDao implements DaoInterface<MatchSheet> {
 	@Override
 	public void delete(Long id) {
 		Session session = sessionFactory.getCurrentSession();
-		MatchSheet matchSheet = find(id);
-		session.remove(matchSheet);
-		
+		System.out.println("Suppression MatchSheet " + id);
+		if (id != null) {
+			MatchSheet matchSheet = find(id);
+			if (matchSheet != null) {
+				session.remove(matchSheet);
+			}
+		}
 	}
-	
+
+	@Override
+	public MatchSheet findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

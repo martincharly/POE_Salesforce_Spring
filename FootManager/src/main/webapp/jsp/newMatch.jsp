@@ -9,23 +9,27 @@
 		+ request.getContextPath() + "/"
 		%>" />
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <title>TeamManager - Création d'un match</title>
 </head>
-<body>
+<body class="backgroundLogin">
 <header>
 <nav>
-<ul>
-<li><a href="team">Effectif</a></li>
-<li><a href="newPlayer">Joueur</a></li>
-<li><a href="newMatch">Match</a></li>
-<li><a href="newMatchSheet">Feuille de match</a></li>
-<li><a href="season">Saison</a></li>
-<li><a href="login">Se déconnecter</a></li>
+<ul class="nav justify-content-center">
+<li class="nav-item"><a class="nav-link active" href="player/team">Effectif</a></li>
+<li class="nav-item"><a class="nav-link" href="player/newPlayer">Joueur</a></li>
+<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
+<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille de match</a></li>
+<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
+<li class="nav-item"><a class="nav-link" href="login">Se déconnecter</a></li>
 </ul>
 </nav>
 </header>
 
+	<div class="formPlayer">
 	<h2>Saisir un match</h2>
+	
 	
 	<form action="" method="post">
 		Date : <input type="date" name="dateMatch"/> <br>
@@ -35,12 +39,13 @@
 					<option value="Official">Officiel</option>
 				</select> <br>
 		Adversaire : <input type="text" name="opponent"> <br> 
-		Buts marqués : <input type="number" name="goalsScored"> <br>
-		Buts encaissés : <input type="number" name="goalsConceded"> <br>
+		Buts marqués : <input type="number" name="goalsScored" min="0" max="15"> <br>
+		Buts encaissés : <input type="number" name="goalsConceded" min="0" max="15"> <br>
 		
-		<input type="submit" value="Ajouter le match" />
+		<input type="submit" value="Ajouter le match" class="btn-login"/>
 	
 	</form>
+	</div>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package fr.capgemini.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,6 +20,7 @@ public class MatchSheet extends DbObject{
 	
 	@ManyToOne  
 	private Match match;
+	
 	@ManyToOne
 	private Player player;
 	

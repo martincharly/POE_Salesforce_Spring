@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,9 +24,10 @@ public class Player extends DbObject {
 	private String email;
 	private int nbGoals;
 	private int nbAssists;
+	private int nbMatchs;
 //	private int nbCards
 	
-	@OneToMany
+	@OneToMany(mappedBy="player")
 	private List<MatchSheet> listMatchSheet = new ArrayList<MatchSheet>();
 	
 	@OneToMany 
@@ -112,6 +115,14 @@ public class Player extends DbObject {
 
 	public void setNbAssists(int nbAssists) {
 		this.nbAssists = nbAssists;
+	}
+
+	public int getNbMatchs() {
+		return nbMatchs;
+	}
+
+	public void setNbMatchs(int nbMatchs) {
+		this.nbMatchs = nbMatchs;
 	}
 
 	

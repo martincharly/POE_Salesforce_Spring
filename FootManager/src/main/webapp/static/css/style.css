@@ -1,0 +1,112 @@
+@charset "ISO-8859-1";
+
+body {
+	background-image: url(images/background_image.jpeg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.formLogin {
+	background-color: rgba(52,73,94,0.9);
+	border-radius : 5px;
+	margin: 0 auto;
+	margin-top: 300px; 
+	align-content:center;
+	text-align: center;
+	height: 200px;
+	width: 300px;
+	padding:20px;
+}
+
+.formPlayer {
+	background-color:rgba(255,255,255,0.8);
+	border-radius : 5px;
+	margin: 0 auto;
+	margin-top: 150px; 
+	height: 450px;
+	width: 450px;
+	padding:20px;
+	text-align: right;
+}
+
+
+input[type="text"], input[type="password"] {
+	height : 20px;
+	width:250px;
+	margin-bottom:20px;
+	background-color : white;
+	padding-left: 5px;
+} 
+
+.formPlayer h2 {
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.formPlayer input{
+	height: 30px;
+	width: 250px;
+	margin-bottom:20px;
+	padding-left: 5px;
+}
+
+.formPlayer select{
+	height: 30px;
+	width: 250px;
+	margin-bottom:20px;
+}
+
+.btn-login {
+	height: 40px;
+	color: white;
+	background-color: #2ECC71;
+	border:none;
+	border-radius:2px;
+	margin-top:20px;
+}
+
+.formLogin .btn-login {
+	width: 250px;
+}
+
+nav {
+	background-color:white;
+	height:60px;
+	opacity:0.8;
+	display:flex;
+	justify-content:center;
+}
+
+ul li a .nav-link disabled {
+	color: red;
+	padding-left: 20px;
+}
+
+ul{
+	font-size: 1.5em;
+	
+}
+
+nav a {
+	color:green;
+}
+
+nav a:hover {
+	color:green;
+	text-decoration: underline;
+}
+
+.table-background {
+	background-color:rgba(255,255,255,0.8);
+	width:80%;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+#message {
+	font-size: 1.5em;
+	background-color: rgba(255,255,255,0.8);
+	color : red;
+}
+

@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class TrainingSheet extends DbObject {
 
-	private int idPlayer;
+
 	private boolean present;
 	private int implication;
 	private boolean late;
@@ -26,14 +26,6 @@ public class TrainingSheet extends DbObject {
 
 	public TrainingSheet() {
 		
-	}
-
-	public int getIdPlayer() {
-		return idPlayer;
-	}
-
-	public void setIdPlayer(int idPlayer) {
-		this.idPlayer = idPlayer;
 	}
 
 	public boolean isPresent() {

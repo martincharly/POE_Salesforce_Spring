@@ -50,4 +50,10 @@ public class MatchDao implements DaoInterface<Match> {
 		
 	}
 
+	@Override
+	public Match findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

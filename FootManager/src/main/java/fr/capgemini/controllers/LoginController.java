@@ -24,7 +24,7 @@ public class LoginController {
 				&& user.getUserName() != "" && user.getPassword() != "" 
 				&& user.getUserName().equals(user.getPassword())) {
 			session.setAttribute("user", user.getUserName());
-			returnUrl = "redirect:/team";
+			returnUrl = "redirect:player/team";
 		}
 		
 		return new ModelAndView (returnUrl);

@@ -1,9 +1,11 @@
 package fr.capgemini.controllers;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
@@ -27,9 +29,12 @@ public class MatchController {
 	public String afficherAjouterMatch() {
 		return "newMatch";
 	}
-
+	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@PostMapping("/newMatch")
-	public String ajouterMatch(Model model,
+	public String ajouterMatch(Model model, Locale locale,
 			@RequestParam("location") String location,
 			@RequestParam("opponent") String opponent,
 			@DateTimeFormat(iso=ISO.DATE)
@@ -47,8 +52,9 @@ public class MatchController {
 		match.setGoalsConceded(goalsConceded);
 		
 		match = dao.createOrUpdate(match);
+		String result1 = messageSource.getMessage("MATCH_ADDED", new String[]{match.getDateMatch().toString()}, locale);
 
-		return afficheListeMatch(model, "Le match du : " + match.getDateMatch() + " a été ajouté !");
+		return afficheListeMatch(model, result1);
 	}
 
 	@PostMapping("/deleteMatch")

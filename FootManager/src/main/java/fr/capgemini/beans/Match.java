@@ -1,10 +1,12 @@
 package fr.capgemini.beans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +24,8 @@ public class Match extends DbObject {
 	private int goalsScored;
 	private int goalsConceded;
 	
+	@OneToMany(mappedBy="match")
+	private List<MatchSheet> listMachSheet;
 	
 	public Match() {
 		
@@ -57,6 +61,14 @@ public class Match extends DbObject {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public List<MatchSheet> getListMachSheet() {
+		return listMachSheet;
+	}
+
+	public void setListMachSheet(List<MatchSheet> listMachSheet) {
+		this.listMachSheet = listMachSheet;
 	}
 
 	public int getGoalsScored() {

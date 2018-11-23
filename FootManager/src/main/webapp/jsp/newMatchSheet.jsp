@@ -11,23 +11,27 @@
 		+ request.getContextPath() + "/"
 		%>" />
 <title>TeamManager - Saisie d'une feuille de match</title>
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body>
+<body class="backgroundLogin">
 <header>
 <nav>
-<ul>
-<li><a href="team">Effectif</a></li>
-<li><a href="newPlayer">Joueur</a></li>
-<li><a href="newMatch">Match</a></li>
-<li><a href="newMatchSheet">Feuille de match</a></li>
-<li><a href="season">Saison</a></li>
-<li><a href="login">Se déconnecter</a></li>
+<ul class="nav justify-content-center">
+<li class="nav-item"><a class="nav-link active" href="player/team">Effectif</a></li>
+<li class="nav-item"><a class="nav-link" href="player/newPlayer">Joueur</a></li>
+<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
+<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille de match</a></li>
+<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
+<li class="nav-item"><a class="nav-link disabled" href="login">Se déconnecter</a></li>
 </ul>
 </nav>
 </header>
 
-<h2>Saisie d'une feuille de match</h2>
-<form action="" method="post">
+	<div class="formPlayer">
+	<h2>Saisir feuille de match</h2>
+	
+	<form action="" method="post">
 
 		Match : <select name="idMatch">
 			<core:forEach var="match" items="${ listeMatch }">
@@ -38,12 +42,12 @@
 		Joueur : <select name="idPlayer">
 			<core:forEach var="player" items="${ listePlayer }">
 				<option value="${ player.id }">
-				${ player.lastName }
+				${ player.lastName } ${player.firstName }
 				</option>
 			</core:forEach>
 		</select> <br>
-		Buts : <input type="number" name="goals"> <br> 
-		Passes: <input type="number" name="assists"> <br>
+		Buts : <input type="number" name="goals" min="0" max="10"> <br> 
+		Passes: <input type="number" name="assists" min="0" max="10"> <br>
 <!-- 		Cartons : <select name="cards"> -->
 <!-- 					<option value="none">Aucun</option> -->
 <!-- 					<option value="yellow">Jaune</option> -->
@@ -57,9 +61,10 @@
 <!-- 					<option value="4">4</option> -->
 <!-- 					<option value="5">5</option> -->
 <!-- 				</select> <br> -->
-		<input type="submit" value="Valider feuille de match" />
+		<input type="submit" value="Valider feuille de match" class="btn-login"/>
 	
 	</form>
-
+	</div>
+${msg}
 </body>
 </html>

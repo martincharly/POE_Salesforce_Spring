@@ -11,56 +11,79 @@
 		+ request.getContextPath() + "/"
 		%>" />
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <title>TeamManager - Effectif</title>
 </head>
-<body>
-<header>
-<nav>
-<ul>
-<li><a href="team">Effectif</a></li>
-<li><a href="newPlayer">Joueur</a></li>
-<li><a href="newMatch">Match</a></li>
-<li><a href="newMatchSheet">Feuille de match</a></li>
-<li><a href="season">Saison</a></li>
-<li><a href="login">Se déconnecter</a></li>
-</ul>
-</nav>
-</header>
 
-	<table>
+<body class="backgroundTeam">
+	<header>
+		<nav>
+			<ul class="nav justify-content-center">
+				<li class="nav-item"><a class="nav-link active" href="player/team">Effectif</a></li>
+				<li class="nav-item"><a class="nav-link" href="player/newPlayer">Joueur</a></li>
+				<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
+				<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille de match</a></li>
+				<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
+				<li class="nav-item"><a class="nav-link" href="login">Se déconnecter</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+<div class="table-background">
+	<table class="table table-hover">
 		<tr>
-			<th>Nom</th>
-			<th>Prénom</th>
-			<th>Date de naissance</th>
-			<th>Poste</th>
-			<th>Numéro</th>
-			<th>Buts</th>
-			<th>Passes</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Prénom</th>
+			<th scope="col">Date de naissance</th>
+			<th scope="col">Poste</th>
+			<th scope="col">Numéro</th>
+			<th scope="col">Buts</th>
+			<th scope="col">Passes</th>
 <!-- 			<th>Cartons</th> -->
-			<th>Matches</th>
-			<th>Email</th>
-			<th>Action</th>
+			<th scope="col">Matches</th>
+			<th scope="col">Email</th>
+			<th scope="col">Convoquer</th>
+			<th scope="col">Action</th>
 		</tr>
 		
 
 		<core:forEach var="player" items="${ listePlayer }">
 		<tr>
-			<td>${player.lastName}</td>
-			<td>${player.firstName}</td>
-			<td>${player.birthday}</td>
-			<td>${player.position}</td>
-			<td>${player.kitNumber}</td>
-			<td>${player.nbGoals}</td>
-			<td>${player.nbAssists}</td>
+			<td scope="row">${player.lastName}</td>
+			<td scope="row">${player.firstName}</td>
+			<td scope="row">${player.birthday}</td>
+			<td scope="row">${player.position}</td>
+			<td scope="row">${player.kitNumber}</td>
+			<td scope="row">${player.nbGoals}</td>
+			<td scope="row">${player.nbAssists}</td>
 <!-- 			<td></td> -->
-			<td></td>
-			<td>${player.email}</td>				
-			<td></td>				
+			<td scope="row">${player.nbMatchs}</td>
+			<td scope="row">${player.email}</td>
+			<td scope="row">
+				<form action="player/convoque" method="post">
+					<input type="hidden" name="id" value="${ player.id }"/>
+					<input type="hidden" name="mailTo" value="${player.email}"/>
+					<input type="hidden" name="sujet" value="Convocation au prochain match"/>
+					<input type="hidden" name="msg" value="Bonjour ${player.firstName}, tu es convoqué pour le prochain match !"/>
+	
+					<input type="submit" value="Convoquer"/>
+				</form>			
+			</td>				
+			<td scope="row">
+				<form action="player/delete" method="post">
+					<input type="hidden" name="id" value="${ player.id }"/>
+					<input type="submit" value="Supprimer"/>
+				</form>
+			</td>				
 		</tr>
 		
 
 </core:forEach>	
 	</table>
+</div>
+	<div id="message">
 	${msg}
+	</div>
 </body>
 </html>
