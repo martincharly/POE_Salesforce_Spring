@@ -9,10 +9,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import fr.capgemini.beans.Admin;
 import fr.capgemini.beans.MatchSheet;
+import fr.capgemini.interfaces.MatchSheetDaoInterface;
 
 @Transactional
-public class MatchSheetDao implements DaoInterface<MatchSheet> {
+public class MatchSheetDao implements MatchSheetDaoInterface {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -55,9 +57,13 @@ public class MatchSheetDao implements DaoInterface<MatchSheet> {
 	}
 
 	@Override
-	public MatchSheet findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MatchSheet> findByMatchId(Long idMatch) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		TypedQuery<MatchSheet> query = session.createQuery("SELECT entity FROM MatchSheet entity WHERE entity.match.id=" + idMatch, MatchSheet.class);
+		
+		return query.getResultList();
+		
 	}
 
 }

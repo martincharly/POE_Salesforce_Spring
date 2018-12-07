@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
+	default-merge="true">
+
+	<!-- 1 - Création d'un objet (méthode 1 : on utilise les propriétés)-->
+	<context:annotation-config /> <!-- Permet de rendre les annotations possibles -->
+	<bean id="springmvc" class="fr.dawan.spring.beans.Formation">
+		<property name="duree" value="5" ></property>
+		<property name="libelle" value="Spring MVC Initiation et approfondissement"></property>
+		<property name="prix" value="1495.00"></property>
+	</bean>
+	
+	
+	<!-- 6 - Ajout d'un nouveau bean (on respecte l'ordre du constructeur du Formation.java) (méthode 2 : on utilise le constructeur)-->
+	<bean id="jpa" class="fr.dawan.spring.beans.Formation">
+		<constructor-arg value="Formation JPA - Hibernate"></constructor-arg>
+		<constructor-arg value="5"></constructor-arg>
+		<constructor-arg value="950.00"></constructor-arg>
+	</bean>
+	
+	
+	<!-- 8.1 - Création de 2 nouvelles formations avec seulement 2 attributs pour voir si l'ordre doit être respecté-->
+	<bean id="jseinit" class="fr.dawan.spring.beans.Formation">
+		<constructor-arg value="Java SE - Initiation"></constructor-arg>
+		<constructor-arg value="5" type="int"></constructor-arg>
+	</bean>
+	
+	<bean id="jseappro" class="fr.dawan.spring.beans.Formation">
+		<constructor-arg value="Java SE - Approfondissement"></constructor-arg>
+		<constructor-arg value="Approfondissement Java Standard Edition"></constructor-arg>
+	</bean>
+	
+	
+	<!-- 9.1 - Création d'une autre formation via le constructeur en utilisant l'index pour spécifier l'ordre -->
+	<bean id="uml" class="fr.dawan.spring.beans.Formation" scope="singleton"> <!-- les scopes permettent de paramétrer l'utilisation du bean (singleton = même instance, prototype = modification a chaque nouvel appel -->
+		<constructor-arg value="UML" index="1"></constructor-arg>
+		<constructor-arg value="500.00" index="0"></constructor-arg>
+		<constructor-arg value="Découverte d'UML" index="2"></constructor-arg>
+		<property name="duree" value="2"></property> <!-- on peut utiliser des "property" en complément -->
+	</bean>
+	
+	
+	<!-- 10 - Création d'une formation avec appel de la méthode init (remplace l'interface InitializingBean et l'annotation @PsotConstruct) -->
+	<bean id="git" class="fr.dawan.spring.beans.Formation" init-method="initialisationFormation">
+		<constructor-arg value="Formation Git"></constructor-arg>
+		<constructor-arg value="3"></constructor-arg>
+		<constructor-arg value="780.00"></constructor-arg>
+	</bean>
+	
+	<bean id="contact1" class="fr.dawan.spring.beans.Contact">
+		<property name="nom" value="Martin"></property>	
+		<property name="prenom" value="Charly"></property>	
+	</bean>
+	
+	<bean id="stagiaire1" class="fr.dawan.spring.beans.Stagiaire">
+		<property name="nom" value="Durand"></property>
+		<property name="prenom" value="Léo"></property>
+		<property name="codeStagiaire" value="DW-DOE-123456"></property> <!--  codeStagiaire a été saisi en dur -->
+	</bean>
+	
+	
+	<!-- 11 - Parent permet de reprendre des propriétés d'un bean "parent" -->
+	<bean id="stagiaire2" class="fr.dawan.spring.beans.Stagiaire" parent="contact1" init-method="init">
+		<!-- <property name="codeStagiaire" value="DW-DOE-654321"></property>
+		<property name="generator" ref="randomGenerator"></property> -->
+	</bean>
+	
+	
+	<!-- 12.1 - Création d'un identifiant de type DW-XXX-123456  avec un "RandomNumberGenerator pour un nouveau stagiaire3-->
+	<bean id="randomGenerator" class="fr.dawan.spring.utils.RandomNumberGenerator"></bean>
+	
+	<bean id="stagiaire3" class="fr.dawan.spring.beans.Stagiaire" parent="contact1" init-method="init"></bean>
+	
+	
+	<bean id="incrementalGenerator" class="fr.dawan.spring.utils.IncrementalNumberGenerator">
+		<property name="compteur" value="1000"></property>
+		<property name="pas" value="5"></property>
+	</bean>
+	
+	<bean id="stagiaire4" class="fr.dawan.spring.beans.Stagiaire" parent="contact1" init-method="init"></bean>
+	
+	
+	<!-- 13.1 - Création d'un catalogue de formations -->
+	<bean id="catalogue1" class="fr.dawan.spring.beans.Catalogue">
+		<property name="listeFormation">
+			<list>
+				<ref bean="springmvc"/>
+				<ref bean="jpa"/>
+				<ref bean="jseinit"/>
+				<ref bean="jseappro"/>
+				<ref bean="git"/>
+				<ref bean="uml"/>
+				<bean id="HTML/CSS" class="fr.dawan.spring.beans.Formation">
+					<property name="libelle" value="HTML/CSS"></property>
+					<property name="duree" value="2"></property>
+					<property name="prix" value="1000"></property>
+					<property name="description" value="Le fond et la forme d'un site web statique"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 14 - Création d'un nouveau catalogue (sans doublon : avec "set")-->
+	<bean id="catalogue2" class="fr.dawan.spring.beans.Catalogue">
+		<property name="listeFormation">
+			<set value-type="fr.dawan.spring.beans.Formations"> <!-- Le "value-type" est seulement à titre informatif -->
+				<ref bean="springmvc"/>
+				<ref bean="jpa"/>
+				<ref bean="jseinit"/>
+				<ref bean="jseappro"/>
+				<ref bean="git"/>
+				<ref bean="uml"/>
+				<bean id="HTML/CSS" class="fr.dawan.spring.beans.Formation">
+					<property name="libelle" value="HTML/CSS"></property>
+					<property name="duree" value="2"></property>
+					<property name="prix" value="1000"></property>
+					<property name="description" value="Le fond et la forme d'un site web statique"></property>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	
+	
+	<!-- 15.1 - Création d'une liste de contacts (avec "util:list")-->
+	<bean id="contact2" class="fr.dawan.spring.beans.Contact">
+		<property name="nom" value="Sterling"></property>
+		<property name="prenom" value="Owen"></property>
+		<property name="listeAdresse">
+			<util:list value-type="java.util.ArrayList">
+				<value type="java.lang.String">contact2Perso@mail.com</value>
+				<value type="java.lang.String">contact2Pro.com</value>
+			</util:list>
+		</property>
+	</bean>
+	
+	<bean id="contact3" class="fr.dawan.spring.beans.Contact">
+		<property name="nom" value="Morgan"></property>
+		<property name="prenom" value="Astrid"></property>
+		<property name="listeAdresse">
+			<list>
+				<value type="java.lang.String">MorganAstridPerso@mail.com</value>
+				<value type="java.lang.String">MorganAstridPro@mail.com</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 16.1 - Création d'une Map -->
+	<bean id="catalogue3" class="fr.dawan.spring.beans.Catalogue">
+		<property name="formations">
+			<map>
+				<entry key="1" value="SQL"></entry>
+				<entry key="2" value="Salesforce"></entry>
+				<entry key="3" value="Hibernate"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	<!--  17 - Création d'une nouvelle adresse pour contact3 avec fusion des anciennes adresses -->
+	<bean id="stagiaireFormateur" class="fr.dawan.spring.beans.Stagiaire" parent="contact3">
+		<property name="listeAdresse">
+			<!-- <list merge="true">Permet de fusionner et non remplacer -->
+			<list> <!-- Inutile de préciser le merge car default-merge ajouté dans les paramètres du beans.xml -->
+				<value>nouvelleAdressePourAstrid@mail.com</value>
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

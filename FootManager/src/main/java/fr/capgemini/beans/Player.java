@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Player extends DbObject {
@@ -25,7 +26,6 @@ public class Player extends DbObject {
 	private int nbGoals;
 	private int nbAssists;
 	private int nbMatchs;
-//	private int nbCards
 	
 	@OneToMany(mappedBy="player")
 	private List<MatchSheet> listMatchSheet = new ArrayList<MatchSheet>();

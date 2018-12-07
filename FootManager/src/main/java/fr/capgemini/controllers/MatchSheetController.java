@@ -1,11 +1,11 @@
 package fr.capgemini.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.capgemini.beans.Match;
 import fr.capgemini.beans.MatchSheet;
 import fr.capgemini.beans.Player;
-import fr.capgemini.dao.DaoInterface;
+import fr.capgemini.interfaces.DaoInterface;
+import fr.capgemini.interfaces.MatchSheetDaoInterface;
+import fr.capgemini.interfaces.PlayerDaoInterface;
 
 @Controller
 public class MatchSheetController {
 
 	@Autowired
 	@Qualifier("hibernateMatchSheetDao")
-	private DaoInterface<MatchSheet> matchSheetDao;
+	private MatchSheetDaoInterface matchSheetDao;
 
 	@Autowired
 	@Qualifier("hibernateMatchDao")
@@ -31,7 +33,7 @@ public class MatchSheetController {
 
 	@Autowired
 	@Qualifier("hibernatePlayerDao")
-	private DaoInterface<Player> playerDao;
+	private PlayerDaoInterface playerDao;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -42,16 +44,12 @@ public class MatchSheetController {
 	}
 
 	@PostMapping("/newMatchSheet")
-	public String ajouterMatchSheet(Model model, Locale locale, @RequestParam("goals") int goals,
-			@RequestParam("assists") int assists, @RequestParam("idPlayer") Long idPlayer,
-			@RequestParam("idMatch") Long idMatch
-
-//			@RequestParam("cards") Cards cards,
-//			@RequestParam("mark") int mark
-
-	) {
-
-		
+	public String ajouterMatchSheet(Model model, Locale locale,
+			@RequestParam("goals") int goals,
+			@RequestParam("assists") int assists,
+			@RequestParam("idPlayer") Long idPlayer,
+			@RequestParam("idMatch") Long idMatch) {
+	
 		MatchSheet matchSheet = new MatchSheet();
 		Player player = playerDao.find(idPlayer);
 		Match match = matchDao.find(idMatch);
@@ -60,13 +58,12 @@ public class MatchSheetController {
 		matchSheet.setAssists(assists);
 		matchSheet.setPlayer(player);
 		matchSheet.setMatch(match);
-//		matchSheet.setCards(cards);
-//		matchSheet.setMark(mark);
+
 		player.setNbGoals(player.getNbGoals() + goals);
 		player.setNbAssists(player.getNbAssists() + assists);
 		player.setNbMatchs(player.getNbMatchs() + 1);
 		
-		List<MatchSheet> listMatchSheet = match.getListMachSheet();
+		List<MatchSheet> listMatchSheet = matchSheetDao.findByMatchId(idMatch);
 		int goalCounter = 0;
 		
 		for (MatchSheet matchSheet2 : listMatchSheet) {
@@ -80,18 +77,18 @@ public class MatchSheetController {
 		} else {
 			player = playerDao.createOrUpdate(player);
 			matchSheet = matchSheetDao.createOrUpdate(matchSheet);
-
-			return afficheListMatchSheet(model, "Feuille de match du " + match.getDateMatch() + " ajoutée pour "
-					+ player.getLastName() + " " + player.getFirstName());
+			
+			String matchSheetAdded = messageSource.getMessage("MATCHSHEET_ADDED", null, locale);
+			return afficheListMatchSheet(model, matchSheetAdded);
 		}
 	}
 
 	@PostMapping("/deleteMatchSheet")
-	public String supprimerMatchSheet(Model model, @RequestParam Long id) {
+	public String supprimerMatchSheet(Model model, @RequestParam Long id, Locale locale) {
 		MatchSheet matchSheet = matchSheetDao.find(id);
 		matchSheetDao.delete(id);
-
-		return afficheListMatchSheet(model, "Feuille de match supprimée : " + matchSheet.getId());
+		String matchSheetDeleted = messageSource.getMessage("MATCHSHEET_DELETED", null, locale);
+		return afficheListMatchSheet(model, matchSheetDeleted);
 	}
 
 	public String afficheListMatchSheet(Model model, String message) {
@@ -100,7 +97,6 @@ public class MatchSheetController {
 		model.addAttribute("msg", message);
 
 		return "newMatchSheet";
-
 	}
 
 }

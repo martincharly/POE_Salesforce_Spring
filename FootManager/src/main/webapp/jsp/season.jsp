@@ -11,18 +11,18 @@
 </head>
 <body class="backgroundLogin">
 	<header>
+		<div class="logoZone">
+			<img src="css/images/logo.PNG" class="navLogo"/>
+			<h1>FootManager</h1>
+		</div>
 		<nav>
 			<ul class="nav justify-content-center">
-				<li class="nav-item"><a class="nav-link active"
-					href="player/team">Effectif</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="player/newPlayer">Joueur</a></li>
-				<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
-				<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille
-						de match</a></li>
+				<li class="nav-item"><a class="nav-link active" href="player/team">Effectif</a></li>
 				<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
-				<li class="nav-item"><a class="nav-link" href="login">Se
-						déconnecter</a></li>
+				<li class="nav-item"><a class="nav-link" href="player/newPlayer">Joueur</a></li>
+				<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
+				<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille de match</a></li>
+				<li class="nav-item"><a class="nav-link" href="login">Se déconnecter</a></li>
 			</ul>
 		</nav>
 	</header>

@@ -50,6 +50,11 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<dependency>
+			  <groupId>javax.security</groupId>
+			  <artifactId>security-api</artifactId>
+			  <version>1.1-rev-1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>FootManager</finalName>

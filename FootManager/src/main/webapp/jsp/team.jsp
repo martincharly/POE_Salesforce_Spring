@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +19,17 @@
 
 <body class="backgroundTeam">
 	<header>
+		<div class="logoZone">
+			<img src="css/images/logo.PNG" class="navLogo"/>
+			<h1>FootManager</h1>
+		</div>
 		<nav>
 			<ul class="nav justify-content-center">
 				<li class="nav-item"><a class="nav-link active" href="player/team">Effectif</a></li>
+				<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
 				<li class="nav-item"><a class="nav-link" href="player/newPlayer">Joueur</a></li>
 				<li class="nav-item"><a class="nav-link" href="newMatch">Match</a></li>
 				<li class="nav-item"><a class="nav-link" href="newMatchSheet">Feuille de match</a></li>
-				<li class="nav-item"><a class="nav-link" href="season">Saison</a></li>
 				<li class="nav-item"><a class="nav-link" href="login">Se déconnecter</a></li>
 			</ul>
 		</nav>
@@ -52,7 +57,7 @@
 		<tr>
 			<td scope="row">${player.lastName}</td>
 			<td scope="row">${player.firstName}</td>
-			<td scope="row">${player.birthday}</td>
+			<td scope="row"><fmt:formatDate value="${player.birthday}" pattern="dd/MM/yyyy"/> </td>
 			<td scope="row">${player.position}</td>
 			<td scope="row">${player.kitNumber}</td>
 			<td scope="row">${player.nbGoals}</td>
@@ -81,9 +86,8 @@
 
 </core:forEach>	
 	</table>
+	<div id="playerAdded">${msg}</div>
 </div>
-	<div id="message">
-	${msg}
-	</div>
+	
 </body>
 </html>

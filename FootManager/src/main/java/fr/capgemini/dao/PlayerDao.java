@@ -11,10 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.capgemini.beans.MatchSheet;
 import fr.capgemini.beans.Player;
+import fr.capgemini.interfaces.PlayerDaoInterface;
 import fr.capgemini.utils.MultiplePlayerFoundException;
 
 @Transactional
-public class PlayerDao implements DaoInterface<Player> {
+public class PlayerDao implements PlayerDaoInterface {
 
 	@Autowired
 	private SessionFactory sessionFactory;

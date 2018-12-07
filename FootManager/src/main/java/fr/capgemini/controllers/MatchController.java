@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.capgemini.beans.Match;
 import fr.capgemini.beans.Type;
-import fr.capgemini.dao.DaoInterface;
+import fr.capgemini.interfaces.DaoInterface;
 
 @Controller
 public class MatchController {
@@ -58,18 +58,17 @@ public class MatchController {
 	}
 
 	@PostMapping("/deleteMatch")
-	public String supprimerMatch(Model model, @RequestParam Long id) {
+	public String supprimerMatch(Model model, @RequestParam Long id, Locale locale) {
 		Match match = dao.find(id);
 		dao.delete(id);
-
-		return afficheListeMatch(model, "Le match du : " + match.getDateMatch() + " a été supprimé !");
+		String matchDeleted = messageSource.getMessage("MATCH_DELETED", new String[]{match.getDateMatch().toString()}, locale); 
+		return afficheListeMatch(model, matchDeleted);
 
 	}
 	
 	@GetMapping("/season")
 	public String afficheListeMatch(Model model, String message) {
 		model.addAttribute("listeMatch", dao.findAll());
-		System.out.println("afficheListeMatch");
 		model.addAttribute("msg", message);
 
 		return "season";

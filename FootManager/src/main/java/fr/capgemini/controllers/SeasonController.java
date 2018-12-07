@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.capgemini.beans.Match;
-import fr.capgemini.dao.DaoInterface;
+import fr.capgemini.interfaces.DaoInterface;
 
 @Controller
 public class SeasonController {

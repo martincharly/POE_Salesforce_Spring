@@ -6,16 +6,55 @@ body {
 	background-repeat: no-repeat;
 }
 
+.navLogo {
+	position: absolute;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin-left: 5%;
+	margin-top: 5px;
+	z-index: 2;
+}
+
+header h1 {
+	position: absolute;
+	color: white;
+	margin-left: 160px;
+	margin-top: 6px;
+	font-size: 2em;
+	z-index: 2;
+	align-content: auto;
+}
+
 .formLogin {
 	background-color: rgba(52,73,94,0.9);
 	border-radius : 5px;
 	margin: 0 auto;
 	margin-top: 300px; 
-	align-content:center;
+	align-items:center;
 	text-align: center;
-	height: 200px;
+	height: auto;
 	width: 300px;
 	padding:20px;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+}
+
+.logo {
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	margin-top: -25%;
+	margin-bottom: 10px;
+	border:solid 10px;;
+	border-color: rgba(52,73,94,0.9);
+}
+
+.formLogin h2 {
+	color: white;
+	padding-bottom: 20px;
+	text-align: center;
 }
 
 .formPlayer {
@@ -30,7 +69,7 @@ body {
 }
 
 
-input[type="text"], input[type="password"] {
+input[type="email"], input[type="password"] {
 	height : 20px;
 	width:250px;
 	margin-bottom:20px;
@@ -58,28 +97,43 @@ input[type="text"], input[type="password"] {
 
 .btn-login {
 	height: 40px;
+	width: 250px;
 	color: white;
 	background-color: #2ECC71;
 	border:none;
 	border-radius:2px;
 	margin-top:20px;
+	margin-bottom:20px;
 }
 
-.formLogin .btn-login {
-	width: 250px;
+.btn-signup a{
+	color: white;
+	text-decoration:none;
+	opacity:0.9;
+}
+
+.btn-signup a:hover{
+	color: white;
 }
 
 nav {
-	background-color:white;
+	background-color: rgba(52,73,94,0.9);
 	height:60px;
 	opacity:0.8;
 	display:flex;
 	justify-content:center;
+	z-index: 1;
 }
 
 ul li a .nav-link disabled {
-	color: red;
-	padding-left: 20px;
+	
+}
+
+
+nav > ul:after{
+	content: "";
+	display: block;
+	clear: both;
 }
 
 ul{
@@ -88,12 +142,15 @@ ul{
 }
 
 nav a {
-	color:green;
+	color: white;
+	display: inline-block;
+	text-decoration: none;
 }
 
 nav a:hover {
-	color:green;
+	color: #2ECC71;
 	text-decoration: underline;
+	font-size: 
 }
 
 .table-background {
@@ -109,4 +166,25 @@ nav a:hover {
 	background-color: rgba(255,255,255,0.8);
 	color : red;
 }
+
+#loginError {
+	font-size:1em;
+	background-color:none;
+	color:red;
+}
+
+#matchsheet-added {
+	font-size:1em;
+	background-color:none;
+	color:red;
+}
+
+#playerAdded {
+	font-size:1.2em;
+	background-color:none;
+	color:red;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+
 

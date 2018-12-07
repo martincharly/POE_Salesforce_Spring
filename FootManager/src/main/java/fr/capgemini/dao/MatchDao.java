@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import fr.capgemini.beans.Match;
+import fr.capgemini.interfaces.DaoInterface;
 
 @Transactional
 public class MatchDao implements DaoInterface<Match> {
@@ -48,12 +49,6 @@ public class MatchDao implements DaoInterface<Match> {
 		Match match = find(id);
 		session.remove(match);
 		
-	}
-
-	@Override
-	public Match findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

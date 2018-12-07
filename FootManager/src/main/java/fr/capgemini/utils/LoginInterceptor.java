@@ -18,20 +18,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String requestedUrl = request.getRequestURI();
 		boolean urlAIgnorer = false;
 		
-		//l'url demandée est elle dans la liste d'urls à ignorer ?
+		//l'url demandï¿½e est elle dans la liste d'urls ï¿½ ignorer ?
 		for (String urlIgnoree : ignoreList) {
-			//l'url cherchée correspond à une url à ignorer
+			//l'url cherchï¿½e correspond ï¿½ une url ï¿½ ignorer
 			if(requestedUrl.contains(urlIgnoree)) {
 				urlAIgnorer = true;
 				break;
 			}
 		}
 		
-		//si ce n'est pas une url à ignorer(typiquement : /login)
+		//si ce n'est pas une url ï¿½ ignorer(typiquement : /login)
+		System.out.println("loginInterceptor : " + urlAIgnorer);
 		if(!urlAIgnorer) {
 			Object user = request.getSession().getAttribute("user");
-			
-			//on n'a pas de user dans la session, donc l'user n'est pas identifié
+			System.out.println("User : " + user);
+			//on n'a pas de user dans la session, donc l'user n'est pas identifie
 			if(user == null) {
 				//on redirigie vers le controller login
 				request.getRequestDispatcher("/login").forward(request, response);		

@@ -9,14 +9,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Required;
+
 @Entity
 public class MatchSheet extends DbObject{
 
-	private int goals;
-	private int assists;
-//	@Enumerated(EnumType.STRING)
-//	private Cards cards;
-//	private int mark;
+	private int goals=0;
+	private int assists=0;
 	
 	@ManyToOne  
 	private Match match;

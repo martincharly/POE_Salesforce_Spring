@@ -12,11 +12,19 @@
 	
 		<body class="backgroundLogin">
 			<div class="formLogin">	
+				<img src="css/images/logo.PNG" class="logo"/>
+				<h2>Connexion</h2>
 				<form action="login" method="post">
-					<input type="text" name="userName" placeholder="Nom d'utilisateur"/> <br/>
-					<input type="password" name="password" placeholder="Mot de passe"/> <br/>
-					<input type="submit" value="Se connecter" class="btn-login"/>
+					<input type="email" name="email" placeholder="Email" required="required"/> <br/>
+					<input type="password" name="password" placeholder="Mot de passe" required="required"/> <br/>
+					<input type="submit" value="Se connecter" class="btn-login"/><br>
+					<div class="btn-signup"><a href="signup">Nouveau sur FootManager ? S'inscrire</a></div><br>
 				</form>
+				
+				<div id="loginError">
+				${msg}
+				</div>
 			</div>
+			
 		</body>
 </html>
